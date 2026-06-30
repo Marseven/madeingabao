@@ -35,6 +35,6 @@
 
   <div class="container footer__bottom">
     <p>© {{ date('Y') }} {{ config('event.organizer') }} · {{ config('event.short_name') }} — Session {{ config('event.session') }}</p>
-    <p><a href="{{ route('admin.login') }}">Admin</a></p>
+    <p><a href="{{ config('event.website') }}" target="_blank" rel="noopener">{{ str_replace(['https://', 'http://'], '', config('event.website')) }}</a></p>
   </div>
 </footer>
