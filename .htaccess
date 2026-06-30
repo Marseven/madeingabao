@@ -1,0 +1,45 @@
+# =====================================================================
+# Made in Gabao — Cod'On Session 28
+# .htaccess RACINE du projet
+# ---------------------------------------------------------------------
+# À utiliser UNIQUEMENT si le document root du domaine pointe sur la
+# racine du projet (.../madeingabao) et NON sur le dossier /public.
+#
+# ✅ Recommandé : configurer le document root du (sous-)domaine sur
+#    .../madeingabao/public dans hPanel — dans ce cas ce fichier est
+#    inutile. Ce .htaccess est un repli pratique quand on ne peut pas
+#    changer le document root (hébergement mutualisé).
+#
+# Effet : tout le trafic est servi depuis public/, et les fichiers de
+# l'application (.env, config, vendor, storage…) restent inaccessibles
+# car non situés sous public/.
+# =====================================================================
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Forcer HTTPS (décommenter si besoin)
+    # RewriteCond %{HTTPS} !=on
+    # RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+    # Rediriger toutes les requêtes vers public/.
+    # Le lookahead (?!public/) empêche toute boucle de réécriture.
+    RewriteRule ^(?!public/)(.*)$ public/$1 [L]
+</IfModule>
+
+# Désactiver le listing des répertoires
+Options -Indexes
+
+# Filet de sécurité : bloquer l'accès direct aux fichiers sensibles
+# (déjà inaccessibles via la réécriture, sauf si mod_rewrite est absent).
+<IfModule mod_authz_core.c>
+    <FilesMatch "(?i)(^\.env|^\.env\..+|^\.git.*|composer\.(json|lock)|package\.json|^artisan$)">
+        Require all denied
+    </FilesMatch>
+</IfModule>
+<IfModule !mod_authz_core.c>
+    <FilesMatch "(?i)(^\.env|^\.env\..+|^\.git.*|composer\.(json|lock)|package\.json|^artisan$)">
+        Order allow,deny
+        Deny from all
+    </FilesMatch>
+</IfModule>
