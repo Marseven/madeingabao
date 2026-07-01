@@ -15,20 +15,14 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class RegistrationController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $registrations = Registration::query()
-            ->search($request->input('q'))
-            ->status($request->input('status'))
-            ->latest()
-            ->paginate(20)
-            ->withQueryString();
+        // Toutes les inscriptions : la recherche / le tri / la pagination
+        // sont gérés côté client par DataTables.
+        $registrations = Registration::query()->latest()->get();
 
         return view('admin.registrations.index', [
             'registrations' => $registrations,
-            'q'             => $request->input('q'),
-            'status'        => $request->input('status'),
-            'statuses'      => Registration::STATUSES,
         ]);
     }
 
