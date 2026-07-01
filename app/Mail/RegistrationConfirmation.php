@@ -27,7 +27,7 @@ class RegistrationConfirmation extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'emails.registration-confirmation',
+            view: 'emails.registration-confirmation',
             with: ['registration' => $this->registration],
         );
     }

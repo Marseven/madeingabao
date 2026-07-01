@@ -33,7 +33,7 @@ class RegistrationReminder extends Mailable
     public function content(): Content
     {
         return new Content(
-            markdown: 'emails.registration-reminder',
+            view: 'emails.registration-reminder',
             with: [
                 'registration'  => $this->registration,
                 'customMessage' => $this->customMessage,
