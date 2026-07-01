@@ -67,20 +67,22 @@
 
           @if ($messages->count())
             <table class="table" style="margin-top:6px;">
-              <thead><tr><th>Canal</th><th>Destinataire</th><th>Statut</th><th>Date</th></tr></thead>
+              <thead><tr><th>Canal</th><th>Objet</th><th>Destinataire</th><th>Statut</th><th>Date</th></tr></thead>
               <tbody>
                 @foreach ($messages as $m)
+                  @php $pc = $m->status === 'sent' ? 'pill--green' : ($m->status === 'failed' ? 'pill--red' : 'pill--gold'); @endphp
                   <tr>
                     <td>{{ ucfirst($m->channel) }}</td>
+                    <td class="muted">{{ $m->message ?: '—' }}</td>
                     <td class="muted">{{ $m->recipient }}</td>
-                    <td><span class="pill pill--gold">{{ $m->status }}</span></td>
-                    <td class="muted">{{ $m->created_at->format('d/m/y H:i') }}</td>
+                    <td><span class="pill {{ $pc }}">{{ $m->status }}</span></td>
+                    <td class="muted">{{ ($m->sent_at ?? $m->created_at)->format('d/m/y H:i') }}</td>
                   </tr>
                 @endforeach
               </tbody>
             </table>
           @else
-            <p class="muted" style="font-size:13px;">Aucune relance enregistrée.</p>
+            <p class="muted" style="font-size:13px;">Aucun email/relance enregistré.</p>
           @endif
         </div>
       </div>

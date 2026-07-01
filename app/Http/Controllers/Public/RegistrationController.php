@@ -25,11 +25,22 @@ class RegistrationController extends Controller
 
         $registration = Registration::create($request->safe()->except('website'));
 
-        // Email de confirmation (silencieux si le mailer échoue — log par défaut).
+        // Email de confirmation — envoyé pour de vrai, et son statut est journalisé
+        // (visible dans l'admin) pour pouvoir vérifier qu'il est bien parti.
+        // L'échec éventuel ne bloque PAS l'inscription.
+        $log = $registration->messages()->create([
+            'channel'   => 'email',
+            'recipient' => $registration->email,
+            'message'   => "Email de confirmation d'inscription",
+            'status'    => 'pending',
+        ]);
+
         try {
             Mail::to($registration->email)->send(new RegistrationConfirmation($registration));
+            $log->update(['status' => 'sent', 'sent_at' => now()]);
         } catch (\Throwable $e) {
             report($e);
+            $log->update(['status' => 'failed']);
         }
 
         return redirect()
