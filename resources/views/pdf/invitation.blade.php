@@ -58,9 +58,26 @@
               <div class="ref">{{ $registration->reference }}</div>
 
               <table class="meta">
-                <tr><td class="k">Événement</td><td class="v">{{ config('event.short_name') }}</td></tr>
-                <tr><td class="k">Date</td><td class="v">{{ config('event.date_label') }} · {{ config('event.time_label') }}</td></tr>
-                <tr><td class="k">Lieu</td><td class="v">{{ config('event.place') }}</td></tr>
+                <tr><td class="k">Participation</td><td class="v">{{ $registration->participation_type ?: '—' }}</td></tr>
+
+                @if ($registration->attendsVeillees())
+                  <tr>
+                    <td class="k">Veillées</td>
+                    <td class="v">En ligne · {{ config('event.veillees_time') }}<br>
+                      <span style="font-weight:normal;color:#6b7785;">{{ $registration->veilleesDatesLabel() }}</span>
+                    </td>
+                  </tr>
+                @endif
+
+                @if ($registration->attendsEvent())
+                  <tr>
+                    <td class="k">Événement</td>
+                    <td class="v">{{ config('event.date_label') }} · {{ config('event.time_label') }}<br>
+                      <span style="font-weight:normal;color:#6b7785;">{{ config('event.place') }}</span>
+                    </td>
+                  </tr>
+                @endif
+
                 @if ($registration->organization)
                   <tr><td class="k">Organisation</td><td class="v">{{ $registration->organization }}</td></tr>
                 @endif
@@ -79,7 +96,14 @@
       </table>
 
       <div class="note">
-        Cette invitation est personnelle et pourra être demandée à l'entrée.
+        @if ($registration->attendsVeillees() && $registration->attendsEvent())
+          Tu participes aux <strong>Veillées Cod'On en ligne</strong> et à <strong>Made in Gabao</strong> le {{ config('event.date_label') }} à {{ config('event.city') }}.
+          Le lien de connexion des veillées est envoyé par email la veille de chaque session. Ce billet (QR) pourra être demandé à l'entrée le jour de l'événement.
+        @elseif ($registration->attendsVeillees())
+          Tu es inscrit·e à toutes les <strong>Veillées Cod'On en ligne</strong>. Le lien de connexion te sera envoyé par email la veille de chaque session.
+        @else
+          Cette invitation est personnelle et pourra être demandée à l'entrée de l'événement.
+        @endif
       </div>
 
       <div class="foot">

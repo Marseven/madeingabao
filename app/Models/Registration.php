@@ -91,6 +91,31 @@ class Registration extends Model
     }
 
     /* ----------------------------------------------------------------
+     | Participation (détecte les sessions concernées par mots-clés,
+     | robuste même si les libellés du formulaire changent)
+     * ---------------------------------------------------------------- */
+
+    public function attendsEvent(): bool
+    {
+        $p = mb_strtolower($this->participation_type ?? '');
+        return str_contains($p, 'présentiel') || str_contains($p, 'presentiel') || str_contains($p, 'deux');
+    }
+
+    public function attendsVeillees(): bool
+    {
+        $p = mb_strtolower($this->participation_type ?? '');
+        return str_contains($p, 'veill') || str_contains($p, 'ligne') || str_contains($p, 'deux');
+    }
+
+    /** Dates des veillées jointes (ex. "Jeu. 16 juillet · Jeu. 20 août · Jeu. 3 septembre"). */
+    public function veilleesDatesLabel(): string
+    {
+        return collect(config('event.veillees', []))
+            ->map(fn ($v) => $v['date_label'])
+            ->implode(' · ');
+    }
+
+    /* ----------------------------------------------------------------
      | Scopes
      * ---------------------------------------------------------------- */
 

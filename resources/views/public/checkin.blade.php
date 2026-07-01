@@ -23,8 +23,12 @@
               <li><span>Référence</span><strong>{{ $registration->reference }}</strong></li>
               <li><span>Organisation</span><strong>{{ $registration->organization ?: '—' }}</strong></li>
               <li><span>Participation</span><strong>{{ $registration->participation_type ?: '—' }}</strong></li>
-              <li><span>Événement</span><strong>{{ config('event.short_name') }}</strong></li>
-              <li><span>Date</span><strong>{{ config('event.date_label') }}</strong></li>
+              @if ($registration->attendsVeillees())
+                <li><span>Veillées (en ligne)</span><strong>{{ $registration->veilleesDatesLabel() }}</strong></li>
+              @endif
+              @if ($registration->attendsEvent())
+                <li><span>Événement</span><strong>{{ config('event.date_label') }} · {{ config('event.place') }}</strong></li>
+              @endif
             </ul>
           </div>
           <div class="ticket__qr">

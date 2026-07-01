@@ -21,11 +21,18 @@
             <p class="ticket__ref-label">Ta référence</p>
             <p class="ticket__ref">{{ $registration->reference }}</p>
             <ul class="ticket__meta">
-              <li><span>Événement</span><strong>{{ config('event.short_name') }}</strong></li>
-              <li><span>Date</span><strong>{{ config('event.date_label') }}</strong></li>
-              <li><span>Lieu</span><strong>{{ config('event.place') }}</strong></li>
+              <li><span>Participation</span><strong>{{ $registration->participation_type ?: '—' }}</strong></li>
+              @if ($registration->attendsVeillees())
+                <li><span>Veillées (en ligne)</span><strong>{{ $registration->veilleesDatesLabel() }}</strong></li>
+              @endif
+              @if ($registration->attendsEvent())
+                <li><span>Événement</span><strong>{{ config('event.date_label') }} · {{ config('event.place') }}</strong></li>
+              @endif
               <li><span>Statut</span><strong>{{ $registration->statusLabel() }}</strong></li>
             </ul>
+            @if ($registration->attendsVeillees())
+              <p class="muted" style="font-size:13px;margin:0 0 14px;">Les veillées sont en ligne — le lien de connexion arrive par email la veille de chaque session.</p>
+            @endif
             <a class="btn btn--gold" href="{{ route('invitation', $registration->qr_code_token) }}" target="_blank" rel="noopener">Télécharger mon invitation (PDF)</a>
           </div>
           <div class="ticket__qr">

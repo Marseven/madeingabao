@@ -45,9 +45,19 @@ return [
     'registration_open' => (bool) env('EVENT_REGISTRATION_OPEN', true),
 
     // Types de participation proposés dans le formulaire.
+    // ⚠️ Les helpers Registration::attendsEvent()/attendsVeillees() détectent
+    // par mots-clés ("présentiel", "veillée/ligne", "deux") — garde ces mots.
     'participation_types' => [
         'Présentiel — Libreville',
         'En ligne (veillées)',
         'Les deux',
+    ],
+
+    // Le cycle des Veillées Cod'On (en ligne). Choisir "veillées" = toutes les veillées.
+    'veillees_time' => '19h — 21h',
+    'veillees' => [
+        ['no' => '01', 'theme' => "Coder avec l'IA",        'date_label' => 'Jeu. 16 juillet 2026'],
+        ['no' => '02', 'theme' => 'Sécurité dans le dev',   'date_label' => 'Jeu. 20 août 2026'],
+        ['no' => '03', 'theme' => 'Vivre du Made in Gabao', 'date_label' => 'Jeu. 3 septembre 2026'],
     ],
 ];
