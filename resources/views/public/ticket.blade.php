@@ -20,7 +20,7 @@
           @csrf
           <input type="text" name="website" value="" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true" />
 
-          <label class="form__field">
+          <label class="form__field" style="margin-bottom:18px;">
             <span>Email ou téléphone *</span>
             <input type="text" name="identifier" value="{{ old('identifier') }}" required autocomplete="off" placeholder="toi@exemple.ga  ·  +241 …" />
             @error('identifier') <em class="form__err">{{ $message }}</em> @enderror
