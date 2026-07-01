@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Exports\RegistrationsExport;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Public\InvitationController;
+use App\Mail\RegistrationReminder;
 use App\Models\Registration;
 use App\Models\RegistrationMessage;
 use App\Services\QrCodeService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
 
 class RegistrationController extends Controller
@@ -83,13 +85,40 @@ class RegistrationController extends Controller
             'message' => ['nullable', 'string', 'max:1000'],
         ]);
 
-        $registration->messages()->create([
+        $recipient = $data['channel'] === 'email' ? $registration->email : $registration->phone;
+
+        $log = $registration->messages()->create([
             'channel'   => $data['channel'],
-            'recipient' => $data['channel'] === 'email' ? $registration->email : $registration->phone,
+            'recipient' => $recipient,
             'message'   => $data['message'] ?? null,
-            'status'    => 'pending', // sera passé à "sent" quand un canal réel sera branché
+            'status'    => 'pending',
         ]);
 
-        return back()->with('success', 'Relance enregistrée (' . $data['channel'] . '). Envoi réel à brancher.');
+        // --- Canal EMAIL : envoi réel (SMTP configuré) ---
+        if ($data['channel'] === 'email') {
+            if (empty($registration->email)) {
+                $log->update(['status' => 'failed']);
+                return back()->with('error', 'Aucune adresse email pour cet inscrit.');
+            }
+
+            try {
+                Mail::to($registration->email)
+                    ->send(new RegistrationReminder($registration, $data['message'] ?? null));
+
+                $log->update(['status' => 'sent', 'sent_at' => now()]);
+
+                return back()->with('success', 'Relance email envoyée à ' . $registration->email . '.');
+            } catch (\Throwable $e) {
+                report($e);
+                $log->update(['status' => 'failed']);
+
+                return back()->with('error', "Échec de l'envoi email : " . $e->getMessage());
+            }
+        }
+
+        // --- Canal WHATSAPP : pas encore branché (aucune API configurée) ---
+        // La relance est journalisée en "pending" ; brancher ici l'API WhatsApp
+        // (Meta Cloud API, Twilio, Wati…) puis passer le statut à "sent".
+        return back()->with('success', 'Relance WhatsApp enregistrée (' . $recipient . '). Envoi WhatsApp réel à brancher.');
     }
 }

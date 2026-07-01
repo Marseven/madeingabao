@@ -62,7 +62,7 @@
               <input class="input" type="text" name="message" placeholder="Note / message (optionnel)" style="min-width:240px;" />
               <button class="btn btn--ghost btn--sm" type="submit">Enregistrer une relance</button>
             </div>
-            <p class="muted" style="font-size:12px;margin:10px 0 0;">L'envoi réel (email / WhatsApp) sera branché ultérieurement — ceci journalise la relance.</p>
+            <p class="muted" style="font-size:12px;margin:10px 0 0;"><strong>Email :</strong> envoyé réellement (SMTP). <strong>WhatsApp :</strong> journalisé uniquement — envoi réel à brancher. Le message optionnel remplace le texte par défaut du mail.</p>
           </form>
 
           @if ($messages->count())
