@@ -5,6 +5,18 @@
   'use strict';
 
   var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var mqMobile = window.matchMedia('(max-width: 900px)');
+
+  /* ---------- forcer le chargement des graisses lourdes des titres ----------
+     Sur mobile, Montserrat 900 (titre du hero) se charge tard → fallback système.
+     On déclenche explicitement le téléchargement pour un rendu fidèle. */
+  if (document.fonts && document.fonts.load) {
+    try {
+      document.fonts.load('900 1em Montserrat');
+      document.fonts.load('800 1em Montserrat');
+      document.fonts.load('700 1em Montserrat');
+    } catch (e) { /* noop */ }
+  }
 
   /* ---------- mobile nav ---------- */
   var toggle = document.getElementById('navToggle');
@@ -118,10 +130,17 @@
       var y = window.scrollY || docEl.scrollTop;
       var max = docEl.scrollHeight - docEl.clientHeight;
       bar.style.width = (max > 0 ? (y / max) * 100 : 0) + '%';
-      // léger fondu/translation du contenu hero au scroll (effet de profondeur)
-      if (heroInner && !reduceMotion && y < window.innerHeight) {
-        heroInner.style.transform = 'translateY(' + (y * 0.12) + 'px)';
-        heroInner.style.opacity = Math.max(0, 1 - y / (window.innerHeight * 0.85));
+      // léger fondu/translation du contenu hero au scroll (desktop uniquement).
+      // Sur mobile, la barre d'adresse qui se replie change innerHeight et fait
+      // sauter/disparaître le contenu → on désactive et on réinitialise.
+      if (heroInner && !reduceMotion) {
+        if (mqMobile.matches) {
+          heroInner.style.transform = '';
+          heroInner.style.opacity = '';
+        } else if (y < window.innerHeight) {
+          heroInner.style.transform = 'translateY(' + (y * 0.12) + 'px)';
+          heroInner.style.opacity = Math.max(0, 1 - y / (window.innerHeight * 0.85));
+        }
       }
       var nav = document.querySelector('.nav');
       if (nav) nav.style.boxShadow = y > 8 ? '0 8px 30px rgba(0,0,0,.28)' : 'none';
