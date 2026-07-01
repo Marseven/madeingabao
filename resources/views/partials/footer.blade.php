@@ -13,6 +13,7 @@
       <a href="{{ route('home') }}#veillees">Les veillées</a>
       <a href="{{ route('home') }}#programme">Programme</a>
       <a href="{{ route('contact') }}">Contact</a>
+      <a href="{{ url('/charte-graphique/') }}" target="_blank" rel="noopener">Charte graphique</a>
     </div>
 
     <div class="footer__col">

@@ -1,0 +1,75 @@
+/* ============================================================
+   MR TECH / MEBODO RICHARD — Spacing, radii, shadows, layout, z
+   ============================================================ */
+:root {
+  /* Spacing scale (px) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+  --space-32: 128px;
+
+  /* Semantic spacing */
+  --space-xs: var(--space-2);
+  --space-sm: var(--space-3);
+  --space-md: var(--space-4);
+  --space-lg: var(--space-8);
+  --space-xl: var(--space-16);
+
+  /* Border radius */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+  --radius-full: 999px;
+  /* aliases */
+  --radius-button: var(--radius-sm);
+  --radius-card: var(--radius-lg);
+  --radius-input: var(--radius-sm);
+  --radius-pill: var(--radius-full);
+
+  /* Shadows (cool navy-tinted) */
+  --shadow-soft: 0 1px 2px rgba(4,41,64,0.06), 0 1px 3px rgba(4,41,64,0.08);
+  --shadow-medium: 0 4px 8px rgba(4,41,64,0.06), 0 6px 16px rgba(4,41,64,0.10);
+  --shadow-elevated: 0 8px 20px rgba(4,41,64,0.10), 0 16px 40px rgba(4,41,64,0.12);
+  --shadow-premium: 0 20px 48px rgba(4,41,64,0.18), 0 8px 16px rgba(4,41,64,0.10);
+  --shadow-focus: var(--focus-ring);
+  /* lime glow for premium CTA */
+  --shadow-lime: 0 6px 18px rgba(159,193,49,0.35);
+
+  /* Container widths */
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1200px;
+  --container-2xl: 1320px;
+  --gutter: 24px; /* @kind spacing */
+
+  /* Z-index scale */
+  --z-base: 0; /* @kind other */
+  --z-dropdown: 1000; /* @kind other */
+  --z-sticky: 1100; /* @kind other */
+  --z-overlay: 1200; /* @kind other */
+  --z-drawer: 1300; /* @kind other */
+  --z-modal: 1400; /* @kind other */
+  --z-toast: 1500; /* @kind other */
+  --z-tooltip: 1600; /* @kind other */
+
+  /* Motion */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1); /* @kind other */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1); /* @kind other */
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1); /* @kind other */
+  --dur-fast: 150ms; /* @kind other */
+  --dur-base: 200ms; /* @kind other */
+  --dur-slow: 250ms; /* @kind other */
+  --transition-base: all var(--dur-base) var(--ease-standard); /* @kind other */
+}

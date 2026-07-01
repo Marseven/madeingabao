@@ -1,0 +1,41 @@
+/* ============================================================
+   MR TECH / MEBODO RICHARD — Base resets & primitives
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--t-body-size);
+  line-height: var(--t-body-lh);
+  color: var(--text-primary);
+  background: var(--background-default);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a { color: var(--text-link); text-decoration: none; transition: color var(--dur-fast) var(--ease-standard); }
+a:hover { color: var(--accent-primary-hover); }
+
+::selection { background: var(--color-electric-lime); color: var(--color-deep-navy); }
+
+/* Brand pattern: code-balise chevrons. Subtle, never harms legibility. */
+.mr-pattern-chevron {
+  background-color: var(--background-subtle);
+  background-image:
+    linear-gradient(135deg, transparent 46%, rgba(0,92,83,0.06) 46%, rgba(0,92,83,0.06) 54%, transparent 54%),
+    linear-gradient(45deg, transparent 46%, rgba(0,92,83,0.06) 46%, rgba(0,92,83,0.06) 54%, transparent 54%);
+  background-size: 28px 28px;
+  background-position: 0 0;
+}
+.mr-pattern-chevron--lime {
+  background-image:
+    linear-gradient(135deg, transparent 46%, rgba(159,193,49,0.16) 46%, rgba(159,193,49,0.16) 54%, transparent 54%),
+    linear-gradient(45deg, transparent 46%, rgba(159,193,49,0.16) 46%, rgba(159,193,49,0.16) 54%, transparent 54%);
+}
+.mr-pattern-chevron--dark {
+  background-color: var(--color-deep-navy);
+  background-image:
+    linear-gradient(135deg, transparent 46%, rgba(255,255,255,0.04) 46%, rgba(255,255,255,0.04) 54%, transparent 54%),
+    linear-gradient(45deg, transparent 46%, rgba(255,255,255,0.04) 46%, rgba(255,255,255,0.04) 54%, transparent 54%);
+}

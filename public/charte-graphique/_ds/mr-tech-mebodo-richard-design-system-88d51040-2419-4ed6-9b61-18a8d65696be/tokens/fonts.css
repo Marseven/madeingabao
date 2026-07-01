@@ -1,0 +1,11 @@
+/* ============================================================
+   MR TECH / MEBODO RICHARD — Fonts
+   Brand fonts: Expose (titles) + Bespoke Sans (body) — both are
+   commercial/licensed and NOT freely embeddable.
+   SUBSTITUTES (Google Fonts, per charter's own alternatives list):
+     Expose       -> Space Grotesk  (structured, technological titles)
+     Bespoke Sans -> Manrope        (clean, legible body)
+   Replace the @import below with @font-face rules once licensed
+   Expose/Bespoke Sans .woff2 files are provided.
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');

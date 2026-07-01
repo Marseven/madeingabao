@@ -1,0 +1,109 @@
+/* ============================================================
+   MR TECH / MEBODO RICHARD — Color tokens
+   Brand palette is fixed by the Charte Graphique. Do not invent
+   new hues; use the brand ramps and semantic aliases below.
+   ============================================================ */
+:root {
+  /* --- Brand core ---------------------------------------- */
+  --color-teal-forest: #005C53;   /* Primary  — subtitles, links, nav, brand */
+  --color-deep-navy:   #042940;   /* Secondary — titles, body text, dark UI */
+  --color-lime:        #9FC131;   /* Intermediate — CTA, buttons, accents */
+  --color-electric-lime:#DBF227;  /* Accent — highlights, badges, hover, progress */
+  --color-sand:        #D6D58E;   /* Warm neutral — soft backgrounds, dividers */
+
+  /* --- Teal Forest ramp (10 → 100%) --------------------- */
+  --teal-10: #E6EFEE;
+  --teal-20: #CCDEDC;
+  --teal-30: #99BEB9;
+  --teal-40: #669D96;
+  --teal-50: #338076; /* mid */
+  --teal-60: #1A7066;
+  --teal-70: #006458;
+  --teal-80: #005C53; /* = base */
+  --teal-90: #004A43;
+  --teal-100:#003832;
+
+  /* --- Lime ramp (10 → 100%) ---------------------------- */
+  --lime-10: #F5F8E8;
+  --lime-20: #ECF2D1;
+  --lime-30: #D9E6A3;
+  --lime-40: #C5D976;
+  --lime-50: #B2CD48;
+  --lime-60: #9FC131; /* = base */
+  --lime-70: #88A828;
+  --lime-80: #6F8A20;
+  --lime-90: #566B19;
+  --lime-100:#3D4D11;
+
+  /* --- Deep Navy ramp (support) ------------------------- */
+  --navy-10: #E6EBEF;
+  --navy-30: #9FB0BC;
+  --navy-50: #3E5C70;
+  --navy-70: #143A52;
+  --navy-90: #042940; /* = base */
+  --navy-100:#021A2A;
+
+  /* --- Neutrals (cool grey, navy-tinted) ---------------- */
+  --grey-0:  #FFFFFF;
+  --grey-50: #F6F8F9;
+  --grey-100:#EDF1F3;
+  --grey-200:#DCE3E7;
+  --grey-300:#C2CDD3;
+  --grey-400:#97A6AE;
+  --grey-500:#6B7C85;
+  --grey-600:#4D5C64;
+  --grey-700:#374349;
+  --grey-800:#222B30;
+  --grey-900:#0F1418;
+
+  /* --- Functional / semantic state colors --------------- */
+  --color-success: #2E9E5B;
+  --color-success-bg: #E6F4EC;
+  --color-warning: #E0A100;
+  --color-warning-bg: #FBF3DC;
+  --color-error:   #D64545;
+  --color-error-bg: #FBEAEA;
+  --color-info:    #1C7FB8;
+  --color-info-bg: #E5F1F8;
+
+  /* ======================================================
+     SEMANTIC ALIASES — reference these in components
+     ====================================================== */
+  /* Text */
+  --text-primary:   var(--color-deep-navy);   /* main body + titles on light */
+  --text-secondary: var(--color-teal-forest); /* subtitles, links, labels */
+  --text-muted:     var(--grey-500);
+  --text-disabled:  var(--grey-400);
+  --text-inverse:   #FFFFFF;
+  --text-on-dark:   #EAF1F0;          /* body on navy/teal */
+  --text-on-dark-muted: #9FB6B2;
+  --text-link:      var(--color-teal-forest);
+  --text-link-hover:var(--color-lime-70, var(--lime-70));
+
+  /* Backgrounds & surfaces */
+  --background-default: #FFFFFF;
+  --background-subtle:  var(--grey-50);
+  --background-sand:    #F3F2DE;       /* very light sand wash */
+  --background-dark:    var(--color-deep-navy);
+  --background-teal:    var(--color-teal-forest);
+  --surface-card:       #FFFFFF;
+  --surface-card-dark:  #0A3346;       /* card on navy */
+  --surface-raised:     #FFFFFF;
+  --surface-overlay:    rgba(4, 41, 64, 0.55);
+
+  /* Borders & dividers */
+  --border-default: var(--grey-200);
+  --border-strong:  var(--grey-300);
+  --border-subtle:  var(--grey-100);
+  --border-dark:    rgba(255,255,255,0.12);
+  --border-focus:   var(--color-lime);
+
+  /* Brand accents */
+  --accent-primary:   var(--color-lime);          /* CTA fills */
+  --accent-primary-hover: var(--lime-70);
+  --accent-highlight: var(--color-electric-lime); /* hover / highlight */
+  --accent-soft:      var(--color-sand);
+
+  /* Focus ring */
+  --focus-ring: 0 0 0 3px rgba(159, 193, 49, 0.45);
+}

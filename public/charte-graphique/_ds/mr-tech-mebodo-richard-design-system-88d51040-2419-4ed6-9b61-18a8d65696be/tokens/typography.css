@@ -1,0 +1,79 @@
+/* ============================================================
+   MR TECH / MEBODO RICHARD — Typography tokens
+   Titles: Expose -> Space Grotesk   Body: Bespoke Sans -> Manrope
+   Code/labels: JetBrains Mono (echoes the code-balise glyph)
+   ============================================================ */
+:root {
+  /* Families */
+  --font-heading: 'Space Grotesk', 'Expose', system-ui, sans-serif;
+  --font-body: 'Manrope', 'Bespoke Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* Weights */
+  --fw-light: 300; /* @kind font */
+  --fw-regular: 400; /* @kind font */
+  --fw-medium: 500; /* @kind font */
+  --fw-semibold: 600; /* @kind font */
+  --fw-bold: 700; /* @kind font */
+  --fw-extrabold: 800; /* @kind font */
+
+  /* ---- Type scale (size / line-height / tracking) ---- */
+  /* Display XXL */
+  --t-display-xxl-size: 72px; /* @kind font */
+  --t-display-xxl-lh: 1.04; /* @kind font */
+  --t-display-xxl-ls: -0.03em; /* @kind font */
+  /* Display XL */
+  --t-display-xl-size: 56px; /* @kind font */
+  --t-display-xl-lh: 1.06; /* @kind font */
+  --t-display-xl-ls: -0.025em; /* @kind font */
+  /* Headings */
+  --t-h1-size: 44px; /* @kind font */
+  --t-h1-lh: 1.1; /* @kind font */
+  --t-h1-ls: -0.02em; /* @kind font */
+  --t-h2-size: 34px; /* @kind font */
+  --t-h2-lh: 1.15; /* @kind font */
+  --t-h2-ls: -0.015em; /* @kind font */
+  --t-h3-size: 26px; /* @kind font */
+  --t-h3-lh: 1.2; /* @kind font */
+  --t-h3-ls: -0.01em; /* @kind font */
+  --t-h4-size: 21px; /* @kind font */
+  --t-h4-lh: 1.3; /* @kind font */
+  --t-h4-ls: -0.005em; /* @kind font */
+  --t-h5-size: 18px; /* @kind font */
+  --t-h5-lh: 1.35; /* @kind font */
+  --t-h5-ls: 0em; /* @kind font */
+  /* Body */
+  --t-body-lg-size: 18px; /* @kind font */
+  --t-body-lg-lh: 1.6; /* @kind font */
+  --t-body-size: 16px; /* @kind font */
+  --t-body-lh: 1.6; /* @kind font */
+  --t-body-sm-size: 14px; /* @kind font */
+  --t-body-sm-lh: 1.55; /* @kind font */
+  --t-caption-size: 12px; /* @kind font */
+  --t-caption-lh: 1.45; /* @kind font */
+  /* Utility */
+  --t-label-size: 13px; /* @kind font */
+  --t-label-lh: 1.3; /* @kind font */
+  --t-label-ls: 0.01em; /* @kind font */
+  --t-button-size: 15px; /* @kind font */
+  --t-button-lh: 1; /* @kind font */
+  --t-button-ls: 0.01em; /* @kind font */
+  --t-overline-size: 12px; /* @kind font */
+  --t-overline-lh: 1.2; /* @kind font */
+  --t-overline-ls: 0.16em; /* @kind font */
+}
+
+/* ---- Optional helper classes (foundations / specimens) ---- */
+.t-display-xxl { font-family: var(--font-heading); font-weight: var(--fw-bold); font-size: var(--t-display-xxl-size); line-height: var(--t-display-xxl-lh); letter-spacing: var(--t-display-xxl-ls); color: var(--text-primary); }
+.t-display-xl  { font-family: var(--font-heading); font-weight: var(--fw-bold); font-size: var(--t-display-xl-size); line-height: var(--t-display-xl-lh); letter-spacing: var(--t-display-xl-ls); color: var(--text-primary); }
+.t-h1 { font-family: var(--font-heading); font-weight: var(--fw-bold); font-size: var(--t-h1-size); line-height: var(--t-h1-lh); letter-spacing: var(--t-h1-ls); color: var(--text-primary); }
+.t-h2 { font-family: var(--font-heading); font-weight: var(--fw-semibold); font-size: var(--t-h2-size); line-height: var(--t-h2-lh); letter-spacing: var(--t-h2-ls); color: var(--text-primary); }
+.t-h3 { font-family: var(--font-heading); font-weight: var(--fw-semibold); font-size: var(--t-h3-size); line-height: var(--t-h3-lh); letter-spacing: var(--t-h3-ls); color: var(--text-primary); }
+.t-h4 { font-family: var(--font-heading); font-weight: var(--fw-medium); font-size: var(--t-h4-size); line-height: var(--t-h4-lh); color: var(--text-primary); }
+.t-h5 { font-family: var(--font-heading); font-weight: var(--fw-medium); font-size: var(--t-h5-size); line-height: var(--t-h5-lh); color: var(--text-primary); }
+.t-body-lg { font-family: var(--font-body); font-weight: var(--fw-regular); font-size: var(--t-body-lg-size); line-height: var(--t-body-lg-lh); color: var(--text-primary); }
+.t-body    { font-family: var(--font-body); font-weight: var(--fw-regular); font-size: var(--t-body-size); line-height: var(--t-body-lh); color: var(--text-primary); }
+.t-body-sm { font-family: var(--font-body); font-weight: var(--fw-regular); font-size: var(--t-body-sm-size); line-height: var(--t-body-sm-lh); color: var(--text-primary); }
+.t-caption { font-family: var(--font-body); font-weight: var(--fw-regular); font-size: var(--t-caption-size); line-height: var(--t-caption-lh); color: var(--text-muted); }
+.t-label   { font-family: var(--font-body); font-weight: var(--fw-semibold); font-size: var(--t-label-size); line-height: var(--t-label-lh); letter-spacing: var(--t-label-ls); color: var(--text-secondary); }
+.t-overline{ font-family: var(--font-mono); font-weight: var(--fw-medium); font-size: var(--t-overline-size); line-height: var(--t-overline-lh); letter-spacing: var(--t-overline-ls); text-transform: uppercase; color: var(--text-secondary); }
