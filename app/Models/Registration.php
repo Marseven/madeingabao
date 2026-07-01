@@ -124,6 +124,12 @@ class Registration extends Model
         return $status ? $query->where('status', $status) : $query;
     }
 
+    /** Inscriptions actives (non annulées). */
+    public function scopeActive($query)
+    {
+        return $query->where('status', '!=', 'cancelled');
+    }
+
     public function scopeSearch($query, ?string $term)
     {
         if (! $term) {

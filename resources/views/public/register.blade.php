@@ -21,7 +21,14 @@
           <form class="form" method="POST" action="{{ route('register.store') }}" novalidate>
             @csrf
 
-            @if ($errors->any())
+            @if ($errors->has('duplicate'))
+              <div class="form-alert form-alert--error">
+                {{ $errors->first('duplicate') }}
+                <span style="display:block;margin-top:8px;">
+                  <a href="{{ route('ticket.show') }}" style="color:inherit;text-decoration:underline;font-weight:600;">Télécharger mon billet</a>
+                </span>
+              </div>
+            @elseif ($errors->any())
               <div class="form-alert form-alert--error">
                 <strong>Oups,</strong> merci de corriger les champs ci-dessous.
               </div>

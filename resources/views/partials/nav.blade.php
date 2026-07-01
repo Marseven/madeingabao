@@ -12,6 +12,7 @@
       <a href="{{ route('home') }}#evenement">Événement</a>
       <a href="{{ route('home') }}#veillees">Veillées</a>
       <a href="{{ route('home') }}#programme">Programme</a>
+      <a href="{{ route('ticket.show') }}">Mon billet</a>
       <a href="{{ route('contact') }}">Contact</a>
       @if (config('event.registration_open'))
         <a class="btn btn--gold btn--sm" href="{{ route('register.create') }}">Je m'inscris</a>

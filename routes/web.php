@@ -8,6 +8,7 @@ use App\Http\Controllers\Public\ContactController;
 use App\Http\Controllers\Public\HomeController;
 use App\Http\Controllers\Public\InvitationController;
 use App\Http\Controllers\Public\RegistrationController as PublicRegistration;
+use App\Http\Controllers\Public\TicketController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +24,10 @@ Route::get('/inscription/merci/{registration:reference}', [PublicRegistration::c
 
 Route::get('/contact', [ContactController::class, 'show'])->name('contact');
 Route::post('/contact', [ContactController::class, 'send'])->name('contact.send');
+
+// Télécharger son billet (recherche par email ou téléphone)
+Route::get('/mon-billet', [TicketController::class, 'show'])->name('ticket.show');
+Route::post('/mon-billet', [TicketController::class, 'find'])->name('ticket.find');
 
 // Vérification (scan QR) et invitation PDF — sécurisées par token unique
 Route::get('/checkin/{token}', [CheckinController::class, 'show'])->name('checkin');
