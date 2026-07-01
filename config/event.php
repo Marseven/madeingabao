@@ -44,6 +44,11 @@ return [
     // Ouvre/ferme le formulaire d'inscription public.
     'registration_open' => (bool) env('EVENT_REGISTRATION_OPEN', true),
 
+    // Auto-confirmer les inscriptions publiques :
+    //  true  -> statut "confirmed" dès l'inscription (event gratuit, tout le monde accepté)
+    //  false -> statut "pending" ; validation manuelle dans l'admin
+    'auto_confirm' => (bool) env('EVENT_AUTO_CONFIRM', true),
+
     // Types de participation proposés dans le formulaire.
     // ⚠️ Les helpers Registration::attendsEvent()/attendsVeillees() détectent
     // par mots-clés ("présentiel", "veillée/ligne", "deux") — garde ces mots.

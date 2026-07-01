@@ -23,7 +23,11 @@ class RegistrationController extends Controller
     {
         abort_unless(config('event.registration_open'), 423);
 
-        $registration = Registration::create($request->safe()->except('website'));
+        $data = $request->safe()->except('website');
+        // Statut initial : confirmé d'office si auto_confirm, sinon en attente (validation admin).
+        $data['status'] = config('event.auto_confirm', true) ? 'confirmed' : 'pending';
+
+        $registration = Registration::create($data);
 
         // Email de confirmation — envoyé pour de vrai, et son statut est journalisé
         // (visible dans l'admin) pour pouvoir vérifier qu'il est bien parti.
